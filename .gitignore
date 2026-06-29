@@ -1,0 +1,35 @@
+# Compiled Binaries, Objects, and Libraries
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+
+# CMake Build Directory
+/build/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+Makefile
+
+# VS Code Settings
+.vscode/
+# Keep this if you want to share debug/run configurations with teammates:
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# Tooling Caches
+.clangd/
+.catch2/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+#planning files
+dsp_proj_implementation.md
+dsp_project_plan.md

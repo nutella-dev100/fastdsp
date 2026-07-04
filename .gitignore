@@ -21,6 +21,7 @@ Makefile
 # Keep this if you want to share debug/run configurations with teammates:
 !.vscode/launch.json
 !.vscode/tasks.json
+.github/agents/
 
 # Tooling Caches
 .clangd/

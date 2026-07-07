@@ -5,23 +5,23 @@
 #include <cstdlib>
 #include <cstddef>
 
-template<typename T, typename Allocator = std::allocator<T>> class signal{
+template<typename T, typename Allocator = std::allocator<T>> class Signal{
     private:
         std::vector<T, Allocator> samples;
         double sample_rate;
     public:
 
         // constructors
-        signal() : sample_rate(44100){}
-        signal(double fs) : sample_rate(fs){}
-        signal(std::size_t len, double fs) : samples(len), sample_rate(fs) {}
-        signal(std::size_t len, double fs, T val) : samples(len, val), sample_rate(fs) {}
-        signal(const signal &s) : samples(s.samples), sample_rate(s.sample_rate){}
-        signal(signal&& other) noexcept : samples(std::move(other.samples)), 
+        Signal() : sample_rate(44100){}
+        Signal(double fs) : sample_rate(fs){}
+        Signal(std::size_t len, double fs) : samples(len), sample_rate(fs) {}
+        Signal(std::size_t len, double fs, T val) : samples(len, val), sample_rate(fs) {}
+        Signal(const Signal &s) : samples(s.samples), sample_rate(s.sample_rate){}
+        Signal(Signal&& other) noexcept : samples(std::move(other.samples)), 
         sample_rate(other.sample_rate){}
 
         // move assignment
-        signal& operator=(signal &&other) noexcept{
+        Signal& operator=(Signal &&other) noexcept{
             if(this != &other){
                 samples = std::move(other.samples);
                 sample_rate = other.sample_rate;
@@ -117,7 +117,7 @@ template<typename T, typename Allocator = std::allocator<T>> class signal{
         }
 
         //getters
-        double sample_rate() const noexcept{ return sample_rate; }
+        double get_sample_rate() const noexcept{ return sample_rate; }
 
         void debug_print(std::ostream& os = std::cout) const {
             os << "{";

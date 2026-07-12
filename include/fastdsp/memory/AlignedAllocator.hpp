@@ -24,7 +24,7 @@ namespace fastdsp{
                 if(n == 0) return nullptr;
 
                 static_assert((alignment & (alignment - 1)) == 0, "alignment must be a power of 2");
-                std::size_t sz = n * sizeof(T);
+                std::size_t sz = n * sizeof(T);     // TODO : add overflow check here
 
                 //aligned alloc needs size to be a multiple of allignment
                 std::size_t rem = sz % alignment;
@@ -45,7 +45,7 @@ namespace fastdsp{
                 return static_cast<T*>(ptr);
             }
 
-            void deallocate(T* p) noexcept {
+            void deallocate(T* p, std::size_t n) noexcept {
                 //deallocation logic
                 if(!p) return;
 

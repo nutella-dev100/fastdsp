@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <type_traits>
 #include <new>
-#include "Types.hpp"
+#include "fastdsp/core/Types.hpp"
 
 namespace fastdsp{
     template<typename T, std::size_t alignment = kDefaultAlignment>
@@ -24,7 +24,10 @@ namespace fastdsp{
                 if(n == 0) return nullptr;
 
                 static_assert((alignment & (alignment - 1)) == 0, "alignment must be a power of 2");
-                std::size_t sz = n * sizeof(T);     // TODO : add overflow check here
+
+                if(n > std::numeric_limits<std::size_t>::max() / sizeof(T)) throw std::bad_array_new_length();
+
+                std::size_t sz = n * sizeof(T);
 
                 //aligned alloc needs size to be a multiple of allignment
                 std::size_t rem = sz % alignment;

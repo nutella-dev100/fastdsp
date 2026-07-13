@@ -10,7 +10,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_library(fastdsp INTERFACE)
 
 # Expose the current directory so headers can be found via #include "Signal.hpp"
-target_include_directories(fastdsp INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(fastdsp INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # Create a test executable to check for compilation errors
 add_executable(fastdsp_test main.cpp)

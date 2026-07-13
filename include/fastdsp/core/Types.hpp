@@ -22,7 +22,7 @@ namespace fastdsp{
     concept Numeric = std::is_arithmetic_v<T>;
 
     template<typename T>
-    concept SimdCompatible = std::is_same_v<T, float> || std::is_same_v<T, double>;
+    concept FloatingPoint = std::is_same_v<T, float> || std::is_same_v<T, double>;
 
     enum class WindowType {
         Rectangular,

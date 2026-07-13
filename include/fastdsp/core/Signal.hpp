@@ -35,6 +35,15 @@ namespace fastdsp {
                 return *this;
             }
 
+            // Copy assignment
+            Signal& operator=(const Signal &other) {
+                if (this != &other) {
+                    samples = other.samples;
+                    sample_rate = other.sample_rate;
+                }
+                return *this;
+            }
+
             // element access -> bound checking??
             T& operator[](std::size_t idx){
                 return samples[idx];

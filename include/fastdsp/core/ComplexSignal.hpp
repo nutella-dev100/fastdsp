@@ -42,7 +42,7 @@ namespace fastdsp{
                 return imag_;
             }
 
-            Complex<T> operator[] (std::size_t i) {
+            Complex<T> operator[] (std::size_t i) const {
                 // if(i > real_.size()) throw std::out_of_range("Out of bounds access");
                 assert(i < this->size());
                 return Complex<T>(real_[i], imag_[i]);

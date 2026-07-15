@@ -22,6 +22,10 @@ Makefile
 !.vscode/launch.json
 !.vscode/tasks.json
 .github/agents/
+*.xml
+
+#jetbrains files
+.idea/
 
 # Tooling Caches
 .clangd/
@@ -34,3 +38,4 @@ Thumbs.db
 #planning files
 dsp_proj_implementation.md
 dsp_project_plan.md
+fft_design.md

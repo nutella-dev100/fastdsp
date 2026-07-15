@@ -16,6 +16,7 @@ namespace fastdsp{
             //constructors
             ComplexSignal() = default;
             ComplexSignal(std::size_t n) : real_(n), imag_(n) {}
+            ComplexSignal(std::size_t n, double fs) : real_(n, fs), imag_(n, fs) {}
 
             std::size_t size() const noexcept {
                 return real_.size();
@@ -55,8 +56,15 @@ namespace fastdsp{
                 imag_[i] = val.imag();
             }
 
+            T* real_data() noexcept { return real_.data(); }
+            const T* real_data() const noexcept { return real_.data(); }
 
+            T* imag_data() noexcept { return imag_.data(); }
+            const T* imag_data() const noexcept { return imag_.data(); }
 
+            double sample_rate() const noexcept {
+                return real_.get_sample_rate();
+            }
 
     };
 }

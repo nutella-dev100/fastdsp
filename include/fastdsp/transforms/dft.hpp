@@ -17,7 +17,7 @@ namespace fastdsp{
             //forward and reverse functions
             ComplexSignal<T> forward(const Signal<T> &input) const{
                 std::size_t N = input.size();
-                ComplexSignal<T> output(N);
+                ComplexSignal<T> output(N, input.get_sample_rate());
                 
                 if(N == 0) return output;
 

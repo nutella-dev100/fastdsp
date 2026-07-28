@@ -65,5 +65,45 @@ namespace fastdsp{
 
                 return output;
             }
+
+            //ComplexSignal overload
+            ComplexSignal<T> forward(const ComplexSignal<T> &input) const{
+                std::size_t N = input.size();
+                ComplexSignal<T> output(N, input.sample_rate());
+                if(N == 0) return output;
+
+                for(std::size_t k = 0; k < N; ++k){
+                    Complex<T> sum(0, 0);
+                    for(std::size_t n = 0; n < N; ++n){
+                        T angle = -static_cast<T>(2) * std::numbers::pi_v<T>
+                                * static_cast<T>(k) * static_cast<T>(n) / static_cast<T>(N);
+                        Complex<T> twiddle(std::cos(angle), std::sin(angle));
+                        sum += input[n] * twiddle;
+                    }
+                    output.set(k, sum);
+                }
+                return output;
+            }
+
+            // Complex-output inverse: matches ifft()'s domain. Named separately from
+            // inverse() — C++ can't overload on return type alone with the same
+            // parameter type (ComplexSignal<T> in both cases).
+            ComplexSignal<T> inverse_complex(const ComplexSignal<T> &input) const{
+                std::size_t N = input.size();
+                ComplexSignal<T> output(N, input.sample_rate());
+                if(N == 0) return output;
+
+                for(std::size_t k = 0; k < N; ++k){
+                    Complex<T> sum(0, 0);
+                    for(std::size_t n = 0; n < N; ++n){
+                        T angle = static_cast<T>(2) * std::numbers::pi_v<T>
+                                * static_cast<T>(k) * static_cast<T>(n) / static_cast<T>(N);
+                        Complex<T> twiddle(std::cos(angle), std::sin(angle));
+                        sum += input[n] * twiddle;
+                    }
+                    output.set(k, sum / static_cast<T>(N));
+                }
+                return output;
+            }
     };
 }

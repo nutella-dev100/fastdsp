@@ -16,8 +16,8 @@ struct ScalarPolicy{
             const std::size_t i1 = i0 + half;
             const std::size_t t = j * stride;
 
-            const T wr = tw_re[i], wi = tw_im[i];
-            const T xr = re[i1], xi = im[x1];
+            const T wr = tw_re[t], wi = tw_im[t];
+            const T xr = re[i1], xi = im[i1];
 
             const T pre = xr * wr - xi * wi;
             const T pim = xr * wi + xi * wr;

@@ -17,3 +17,19 @@ add_executable(fastdsp_test main.cpp)
 
 # Link the test executable to our header-only library
 target_link_libraries(fastdsp_test PRIVATE fastdsp)
+
+enable_testing()
+
+set(FASTDSP_TEST_SOURCES
+    tests/test_bit_reverse.cpp
+    tests/test_twiddle.cpp
+    tests/test_fft_vs_dft.cpp
+    tests/test_fft_roundtrip.cpp
+)
+
+foreach(test_src ${FASTDSP_TEST_SOURCES})
+    get_filename_component(test_name ${test_src} NAME_WE)
+    add_executable(${test_name} ${test_src})
+    target_link_libraries(${test_name} PRIVATE fastdsp)
+    add_test(NAME ${test_name} COMMAND ${test_name})
+endforeach()

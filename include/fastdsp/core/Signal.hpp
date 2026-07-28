@@ -17,7 +17,7 @@ namespace fastdsp {
 
             // constructors
             Signal() : sample_rate(44100){}
-            Signal(double fs) : sample_rate(fs){}
+            //Signal(double fs) : sample_rate(fs){} -> removed cuz ambiguous with the only len constructor
             Signal(std::size_t len, double fs) : samples(len), sample_rate(fs) {}
             Signal(std::size_t len) : samples(len), sample_rate(44100) {}
             Signal(std::size_t len, double fs, T val) : samples(len, val), sample_rate(fs) {}

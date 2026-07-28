@@ -26,6 +26,8 @@ set(FASTDSP_TEST_SOURCES
     tests/test_fft_vs_dft.cpp
     tests/test_fft_roundtrip.cpp
     tests/test_fft_simd.cpp
+    tests/test_convolve.cpp
+    tests/test_rfft.cpp
 )
 
 foreach(test_src ${FASTDSP_TEST_SOURCES})

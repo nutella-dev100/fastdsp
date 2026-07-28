@@ -3,7 +3,7 @@
 #include <fastdsp/transforms/detail/fft_impl.hpp>
 #include <fastdsp/transforms/detail/scalar_policy.hpp>
 #if defined(FASTDSP_HAS_AVX2)
-  #include <fastdsp/transform/detail/simd_policy.hpp>
+  #include <fastdsp/transforms/detail/simd_policy.hpp>
 #endif
 #include <fastdsp/core/Types.hpp>
 #include <fastdsp/core/ComplexSignal.hpp>

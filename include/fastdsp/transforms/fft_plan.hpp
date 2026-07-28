@@ -26,11 +26,11 @@ class FFTPlan{
             return size_;
         }
 
-        void forward(ComplexSignal<T> &x){
+        void forward(ComplexSignal<T> &x) const {
             detail::fft_impl<Policy>(x, twiddle_);
         }
 
-        void inverse(ComplexSignal<T> &x){
+        void inverse(ComplexSignal<T> &x) const {
             //IFFT(X) = 1/N x (FFT(X*))*
 
             const std::size_t N = x.size();

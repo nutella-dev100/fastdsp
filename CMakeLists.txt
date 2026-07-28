@@ -25,6 +25,7 @@ set(FASTDSP_TEST_SOURCES
     tests/test_twiddle.cpp
     tests/test_fft_vs_dft.cpp
     tests/test_fft_roundtrip.cpp
+    tests/test_fft_simd.cpp
 )
 
 foreach(test_src ${FASTDSP_TEST_SOURCES})
@@ -33,3 +34,6 @@ foreach(test_src ${FASTDSP_TEST_SOURCES})
     target_link_libraries(${test_name} PRIVATE fastdsp)
     add_test(NAME ${test_name} COMMAND ${test_name})
 endforeach()
+
+target_compile_options(test_fft_simd PRIVATE -mavx2 -mfma)
+target_compile_definitions(test_fft_simd PRIVATE FASTDSP_HAS_AVX2)

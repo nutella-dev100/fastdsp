@@ -7,6 +7,7 @@
 #include <cmath>
 #include <numbers>
 #include <utility>
+#include <bit>
 
 namespace fastdsp::detail{
 
@@ -17,14 +18,11 @@ class TwiddleTable{
         std::vector<T> imag_;
     
     public:
-        explicit TwiddleTable(std::size_t N) : real_(N), imag_(N){
+        explicit TwiddleTable(std::size_t N) : real_(N / 2), imag_(N / 2){
             // 2*pi/N
-            const T theta = 
-                -static_cast<T>(2) *
-                std::numbers::pi_v<T> / 
-                static_cast<T>(N);
+            const T theta = -T(2) * std::numbers::pi_v<T> / static_cast<T>(N);
 
-            for(std::size_t k = 0; k < N; ++k){
+            for(std::size_t k = 0; k < N / 2; ++k){
                 const T angle = theta * static_cast<T>(k);
                 real_[k] = std::cos(angle);
                 imag_[k] = std::sin(angle);
@@ -74,22 +72,5 @@ void bit_reverse(ComplexSignal<T>& signal) noexcept
         std::swap(imag[i], imag[j]);
     }
 }
-
-template<FloatingPoint T, class Policy>
-class FFTPlan{
-    private:
-        const std::size_t size_;
-        TwiddleTable<T> twiddle_;
-    public:
-        explicit FFTPlan(std::size_t N) : size_(N), twiddle_(N);
-
-        const std::size_t size() const noexcept {
-            return size_;
-        }
-
-        const TwiddleTable<T>& twiddles() const noexcept {
-            return twiddle_;
-        }
-};
 
 }

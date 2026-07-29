@@ -7,6 +7,7 @@
 #include <iostream>
 #include <ostream>
 #include <cstdint>
+#include <stdexcept>
 
 namespace fastdsp {
     template<typename T, typename Allocator = std::allocator<T>> class Signal{

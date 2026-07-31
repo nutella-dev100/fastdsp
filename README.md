@@ -1,1 +1,4 @@
-Work in progress dsp library written in cpp
+DSP Library written in cpp
+- SIMD vectorised fft
+- Overlap add convolution
+- FIR filters

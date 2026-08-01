@@ -27,6 +27,9 @@ Makefile
 #jetbrains files
 .idea/
 
+#visual stuido files
+.vs
+
 # Tooling Caches
 .clangd/
 .catch2/

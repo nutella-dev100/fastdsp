@@ -1,7 +1,17 @@
 #pragma once
 
+#if defined(_MSC_VER)
+
+#ifndef __AVX__
+#error "Compile with /arch:AVX2"
+#endif
+
+#else
+
 #if !defined(__AVX2__) || !defined(__FMA__)
-    #error "ops_avx2.hpp requires -mavx2 -mfma"
+#error "Compile with -mavx2 -mfma"
+#endif
+
 #endif
 
 #include <fastdsp/core/Types.hpp>

@@ -13,6 +13,8 @@ namespace fastdsp::detail{
 
 template<FloatingPoint T>
 class TwiddleTable{
+    // TODO: extend twiddle table to avoid gather in simd instructions
+
     private:
         std::vector<T> real_;
         std::vector<T> imag_;
